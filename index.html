@@ -16,6 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <style>
 
 /* ============================================================
@@ -160,6 +162,91 @@ body{
 }
 .sound-toggle:hover{border-color:var(--amber);transform:scale(1.08);}
 .sound-toggle[aria-pressed="true"]{border-color:var(--amber);box-shadow:0 0 14px rgba(232,163,61,0.35);}
+
+/* ---------- MEMORY WALL ---------- */
+.wall-intro{
+  font-size:0.98rem;
+  color:var(--parchment);
+  opacity:0.75;
+  line-height:1.6;
+  margin:-24px 0 26px;
+  max-width:540px;
+}
+.wall-form{
+  background:rgba(242,233,220,0.04);
+  border:1px solid rgba(242,233,220,0.14);
+  border-radius:10px;
+  padding:24px;
+  margin-bottom:28px;
+}
+.wall-form input, .wall-form textarea{
+  width:100%;
+  background:rgba(250,247,242,0.03);
+  border:1px solid rgba(242,233,220,0.2);
+  border-radius:6px;
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:0.95rem;
+  padding:11px 13px;
+  margin-bottom:12px;
+  resize:vertical;
+}
+.wall-form textarea{min-height:80px;}
+.wall-form input::placeholder, .wall-form textarea::placeholder{color:rgba(242,233,220,0.4);}
+.wall-submit{
+  background:var(--amber);
+  color:var(--ink-deep);
+  border:none;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:0.92rem;
+  padding:11px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.wall-submit:disabled{opacity:0.5;cursor:default;}
+.wall-status{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  margin-top:10px;
+  min-height:16px;
+}
+.wall-list{display:flex;flex-direction:column;gap:16px;}
+.wall-card{
+  background:rgba(242,233,220,0.04);
+  border-left:2px solid var(--teal);
+  border-radius:0 8px 8px 0;
+  padding:16px 20px;
+}
+.wall-card .wall-name{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--amber);
+  letter-spacing:0.05em;
+  margin-bottom:6px;
+}
+.wall-card .wall-msg{
+  font-family:var(--serif);
+  font-size:1.05rem;
+  color:var(--parchment);
+  line-height:1.5;
+  white-space:pre-line;
+}
+.wall-card img{
+  margin-top:10px;
+  max-width:220px;
+  border-radius:6px;
+  display:block;
+}
+.wall-empty{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--parchment);
+  opacity:0.6;
+  text-align:center;
+  padding:20px 0;
+}
 
 /* ---------- ACHIEVEMENT TOAST (minecraft easter egg) ---------- */
 #achievementToast{
@@ -894,6 +981,25 @@ section{padding:90px 0;position:relative;z-index:10;}
 
   <div class="wrap"><div class="divider"></div></div>
 
+  <section id="wallSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter six</div>
+      <h2>Add to this</h2>
+    </div>
+    <p class="wall-intro">This isn't just for today — anyone with this link can drop a memory below, and it stays here for good. No login, just be yourself.</p>
+    <div class="wall-form">
+      <input type="text" id="wallNameInput" placeholder="Your name (optional)" maxlength="40">
+      <textarea id="wallMsgInput" placeholder="Write a memory, a message, anything..." maxlength="480"></textarea>
+      <input type="text" id="wallImgInput" placeholder="Photo URL (optional)">
+      <br>
+      <button class="wall-submit" id="wallSubmitBtn">Post</button>
+      <div class="wall-status" id="wallStatus"></div>
+    </div>
+    <div class="wall-list" id="wallList"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
   <section class="closing reveal">
     <div class="eyebrow">last chapter</div>
     <div class="closing-panel">
@@ -926,7 +1032,7 @@ const CONFIG = {
   // up when scrolled into view. Placeholder values below — edit these to
   // whatever's real/meaningful (years of friendship, hangouts, whatever).
   stats: [
-    { value: 5, label: "years of friendship" },
+    { value: 6, label: "years of friendship" },
     { value: 17, label: "birthdays celebrated, this one included" }
   ],
 
@@ -962,6 +1068,16 @@ const CONFIG = {
   closingLetter: "Bro, I must say that birthday is not an achievement to be proud of neither something to avoid. It is a chance for ourselves to reflect on the time we have passed in this world and try to be more productive. It gives hope for a new and much glorious dawn. May your upcoming years shine more than ever and you live a long life. Happy Birthday!",
 
   footerNote: "built with a couple late nights, for you",
+
+  // Firebase project config — powers the live "Add to this" memory wall.
+  firebase: {
+    apiKey: "AIzaSyCqYEyMWyEI3YdP5ytjbyB3KZTQuSDx4jI",
+    authDomain: "first-8b63f.firebaseapp.com",
+    projectId: "first-8b63f",
+    storageBucket: "first-8b63f.firebasestorage.app",
+    messagingSenderId: "1078992000220",
+    appId: "1:1078992000220:web:ff6f57dae8ba82e8ccd019"
+  },
 
   // Floating ambient photos — small, scattered near the edges as you
   // scroll. side: "left" or "right". top: rough % down the whole page.
@@ -1508,6 +1624,89 @@ document.getElementById('gameGamertag').textContent = CONFIG.gamertag;
   });
 
   resize();
+})();
+
+// --- Memory wall (Firebase) ---
+(function(){
+  let db;
+  try{
+    firebase.initializeApp(CONFIG.firebase);
+    db = firebase.firestore();
+  } catch(e){
+    console.error('Firebase init failed', e);
+    document.getElementById('wallStatus').textContent = "Couldn't connect right now — try refreshing.";
+    return;
+  }
+
+  const list = document.getElementById('wallList');
+  const nameInput = document.getElementById('wallNameInput');
+  const msgInput = document.getElementById('wallMsgInput');
+  const imgInput = document.getElementById('wallImgInput');
+  const submitBtn = document.getElementById('wallSubmitBtn');
+  const status = document.getElementById('wallStatus');
+  let lastPostAt = 0;
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  db.collection('memories').orderBy('createdAt','desc').limit(50)
+    .onSnapshot(snapshot=>{
+      if(snapshot.empty){
+        list.innerHTML = '<p class="wall-empty">Be the first to add something here.</p>';
+        return;
+      }
+      list.innerHTML = '';
+      snapshot.forEach(doc=>{
+        const d = doc.data();
+        const card = document.createElement('div');
+        card.className = 'wall-card';
+        card.innerHTML = `
+          <div class="wall-name">${escapeHtml(d.name || 'Anonymous')}</div>
+          <div class="wall-msg">${escapeHtml(d.message || '')}</div>
+          ${d.imageUrl ? `<img src="${escapeHtml(d.imageUrl)}" alt="">` : ''}
+        `;
+        if(d.imageUrl) withImgFallback(card.querySelector('img'));
+        list.appendChild(card);
+      });
+    }, err=>{
+      console.error(err);
+      list.innerHTML = '<p class="wall-empty">Couldn\'t load memories right now.</p>';
+    });
+
+  submitBtn.addEventListener('click', ()=>{
+    const message = msgInput.value.trim();
+    if(!message){
+      status.textContent = 'Write something first.';
+      return;
+    }
+    const now = Date.now();
+    if(now - lastPostAt < 20000){
+      status.textContent = 'One at a time — try again in a few seconds.';
+      return;
+    }
+    submitBtn.disabled = true;
+    status.textContent = 'Posting...';
+    db.collection('memories').add({
+      name: nameInput.value.trim().slice(0,40),
+      message: message.slice(0,480),
+      imageUrl: imgInput.value.trim().slice(0,500),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(()=>{
+      lastPostAt = now;
+      msgInput.value = '';
+      imgInput.value = '';
+      status.textContent = 'Posted.';
+      setTimeout(()=> status.textContent = '', 2500);
+    }).catch(e=>{
+      console.error(e);
+      status.textContent = "Couldn't post — try again.";
+    }).finally(()=>{
+      submitBtn.disabled = false;
+    });
+  });
 })();
 
 // --- Sound (starts on first interaction, toggle-able) ---
