@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Hashim</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='13' y='12' width='6' height='18' rx='2' fill='%23F2E9DC'/%3E%3Cpath d='M16 2c4 5 5 8 0 12-5-4-4-7 0-12Z' fill='%23E8A33D'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Happy Birthday, Hashim Azaz — bbhitman786">
+<meta property="og:description" content="A small project, for a big friendship. Light the candles.">
+<meta property="og:image" content="https://i.ibb.co/gZ6NLbmR/Screenshot-20260617-203104.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Happy Birthday, Hashim Azaz — bbhitman786">
+<meta name="twitter:description" content="A small project, for a big friendship. Light the candles.">
+<meta name="twitter:image" content="https://i.ibb.co/gZ6NLbmR/Screenshot-20260617-203104.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<style>
+
+/* ============================================================
+   EDIT ME — everything personalized lives in the CONFIG object
+   near the bottom of the <script> tag. Search for "CONFIG" to
+   jump straight there. Nothing above that needs to change.
+   ============================================================ */
+
+:root{
+  --ink:#14213D;
+  --ink-deep:#0B1526;
+  --parchment:#F2E9DC;
+  --paper:#FAF7F2;
+  --amber:#E8A33D;
+  --rose:#C1666B;
+  --teal:#1B4B43;
+  --glow:0;
+  --floater-edge:-10px;
+  --serif:'Fraunces', serif;
+  --sans:'Inter', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  position:relative;
+  font-family:var(--sans);
+  color:var(--paper);
+  background:
+    radial-gradient(circle at 50% 15%, rgba(232,163,61,calc(0.05 + var(--glow)*0.35)) 0%, transparent 55%),
+    linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%);
+  transition:background 1.2s ease;
+  overflow-x:hidden;
+}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 24px;position:relative;z-index:10;}
+
+/* ---------- FLOATING AMBIENT PHOTOS ---------- */
+#floatWrap{
+  position:absolute;
+  top:0;left:0;width:100%;
+  pointer-events:none;
+  z-index:2;
+}
+.floater{
+  position:absolute;
+  background:var(--paper);
+  padding:5px 5px 12px;
+  border-radius:3px;
+  box-shadow:0 10px 26px rgba(0,0,0,0.45);
+  animation-name:floatBob;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  opacity:0.9;
+}
+.floater img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:1px;
+}
+@keyframes floatBob{
+  0%,100%{transform:translateY(0) rotate(var(--rot));}
+  50%{transform:translateY(-14px) rotate(var(--rot));}
+}
+@media (prefers-reduced-motion: reduce){
+  .floater{animation:none;}
+}
+@media (max-width:640px){
+  .floater{transform:scale(0.7);}
+  :root{--floater-edge:-48px;}
+}
+@media (max-width:400px){
+  .floater{transform:scale(0.55);}
+  :root{--floater-edge:-58px;}
+}
+
+/* ---------- EMBER PARTICLES ---------- */
+.ember-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+.ember{
+  position:absolute;
+  bottom:-10px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,163,61,0.95) 0%, rgba(232,163,61,0) 72%);
+  animation-name:emberRise;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+@keyframes emberRise{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  12%{opacity:0.75;}
+  88%{opacity:0.4;}
+  100%{transform:translateY(-108vh) translateX(var(--drift));opacity:0;}
+}
+@media (prefers-reduced-motion: reduce){
+  .ember-layer{display:none;}
+}
+
+/* ---------- SCROLL REVEALS ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+}
+
+/* ---------- SOUND TOGGLE ---------- */
+.sound-toggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:50;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:rgba(11,21,38,0.85);
+  border:1px solid rgba(232,163,61,0.4);
+  color:var(--paper);
+  font-size:18px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  transition:transform 0.15s ease, border-color 0.15s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sound-toggle:hover{border-color:var(--amber);transform:scale(1.08);}
+.sound-toggle[aria-pressed="true"]{border-color:var(--amber);box-shadow:0 0 14px rgba(232,163,61,0.35);}
+
+/* ---------- MEMORY WALL ---------- */
+.wall-intro{
+  font-size:0.98rem;
+  color:var(--parchment);
+  opacity:0.75;
+  line-height:1.6;
+  margin:-24px 0 26px;
+  max-width:540px;
+}
+.wall-form{
+  background:rgba(242,233,220,0.04);
+  border:1px solid rgba(242,233,220,0.14);
+  border-radius:10px;
+  padding:24px;
+  margin-bottom:28px;
+}
+.wall-form input, .wall-form textarea{
+  width:100%;
+  background:rgba(250,247,242,0.03);
+  border:1px solid rgba(242,233,220,0.2);
+  border-radius:6px;
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:0.95rem;
+  padding:11px 13px;
+  margin-bottom:12px;
+  resize:vertical;
+}
+.wall-form textarea{min-height:80px;}
+.wall-form input::placeholder, .wall-form textarea::placeholder{color:rgba(242,233,220,0.4);}
+.wall-submit{
+  background:var(--amber);
+  color:var(--ink-deep);
+  border:none;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:0.92rem;
+  padding:11px 22px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.wall-submit:disabled{opacity:0.5;cursor:default;}
+.wall-status{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  margin-top:10px;
+  min-height:16px;
+}
+.wall-list{display:flex;flex-direction:column;gap:16px;}
+.wall-card{
+  background:rgba(242,233,220,0.04);
+  border-left:2px solid var(--teal);
+  border-radius:0 8px 8px 0;
+  padding:16px 20px;
+}
+.wall-card .wall-name{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--amber);
+  letter-spacing:0.05em;
+  margin-bottom:6px;
+}
+.wall-card .wall-msg{
+  font-family:var(--serif);
+  font-size:1.05rem;
+  color:var(--parchment);
+  line-height:1.5;
+  white-space:pre-line;
+}
+.wall-card img{
+  margin-top:10px;
+  max-width:220px;
+  border-radius:6px;
+  display:block;
+}
+.wall-reactions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.reaction-btn{
+  background:rgba(242,233,220,0.06);
+  border:1px solid rgba(242,233,220,0.15);
+  border-radius:20px;
+  padding:5px 11px;
+  font-size:0.88rem;
+  cursor:pointer;
+  color:var(--parchment);
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-family:var(--sans);
+  transition:border-color 0.15s ease;
+}
+.reaction-btn:hover{border-color:var(--amber);}
+.reaction-btn.reacted{border-color:var(--amber);background:rgba(232,163,61,0.12);}
+.reaction-btn .count{
+  font-family:var(--mono);
+  font-size:11px;
+  opacity:0.75;
+}
+.wall-empty{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--parchment);
+  opacity:0.6;
+  text-align:center;
+  padding:20px 0;
+}
+
+/* ---------- ACHIEVEMENT TOAST (minecraft easter egg) ---------- */
+#achievementToast{
+  position:fixed;
+  top:18px;
+  right:18px;
+  z-index:100;
+  background:linear-gradient(180deg, #565248, #2b2a24);
+  border:2px solid #1a1a15;
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,0.15),
+    inset -2px -2px 0 rgba(0,0,0,0.35),
+    0 10px 30px rgba(0,0,0,0.6);
+  padding:10px 16px 10px 10px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transform:translateX(120%);
+  transition:transform 0.4s cubic-bezier(.2,.9,.3,1.2);
+  max-width:300px;
+}
+#achievementToast.show{transform:translateX(0);}
+#achievementToast .ach-icon{
+  font-size:26px;
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg, #8b8b8b, #5a5a5a);
+  border:2px solid #2b2b2b;
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,0.3), inset -1px -1px 0 rgba(0,0,0,0.4);
+  flex-shrink:0;
+}
+#achievementToast .ach-title{
+  font-family:'Press Start 2P', var(--mono);
+  font-size:9px;
+  color:#FFFF55;
+  text-shadow:1.5px 1.5px 0 rgba(0,0,0,0.6);
+  letter-spacing:0.02em;
+  line-height:1.4;
+}
+#achievementToast .ach-sub{
+  font-family:'Press Start 2P', var(--mono);
+  font-size:10px;
+  color:#FFFFFF;
+  text-shadow:1.5px 1.5px 0 rgba(0,0,0,0.6);
+  margin-top:5px;
+  line-height:1.4;
+}
+@keyframes tntShake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px) rotate(-0.5deg);}
+  40%{transform:translateX(5px) rotate(0.5deg);}
+  60%{transform:translateX(-4px);}
+  80%{transform:translateX(3px);}
+}
+body.tnt-shake{animation:tntShake 0.4s ease;}
+#tntBurst{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:150;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:80px;
+  opacity:0;
+}
+#tntBurst.go{
+  animation:tntPop 0.6s ease-out;
+}
+@keyframes tntPop{
+  0%{opacity:0;transform:scale(0.3);}
+  30%{opacity:1;transform:scale(1.2);}
+  100%{opacity:0;transform:scale(1.6);}
+}
+
+/* ---------- INTRO OVERLAY ---------- */
+#introOverlay{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:var(--ink-deep);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity 0.7s ease;
+}
+#introOverlay.fade-out{opacity:0;pointer-events:none;}
+.intro-candle{width:44px;height:120px;}
+.intro-candle .flame{opacity:0;transform-origin:50% 100%;}
+.intro-candle.lit .flame{
+  opacity:1;
+  animation:flicker 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  #introOverlay{display:none;}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 24px;
+  position:relative;
+  z-index:10;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:18px;
+  opacity:0.9;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2.2rem, 6.5vw, 4rem);
+  line-height:1.08;
+  margin:0 0 14px;
+}
+.gamertag{
+  font-family:var(--mono);
+  font-size:clamp(0.85rem, 2vw, 1rem);
+  letter-spacing:0.06em;
+  color:var(--parchment);
+  opacity:0.75;
+  margin-bottom:26px;
+}
+.gamertag span{
+  color:var(--amber);
+  opacity:1;
+  border:1px solid rgba(232,163,61,0.4);
+  padding:3px 10px;
+  border-radius:20px;
+  margin-left:4px;
+}
+.hero p.tagline{
+  font-size:clamp(1rem, 2vw, 1.15rem);
+  color:var(--parchment);
+  max-width:460px;
+  opacity:0.85;
+  margin:0 0 46px;
+}
+
+.candles{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  max-width:560px;
+  margin-bottom:20px;
+}
+.candle{
+  width:26px;
+  height:70px;
+  cursor:pointer;
+  position:relative;
+  transition:transform 0.15s ease;
+}
+.candle:hover{transform:translateY(-3px);}
+.candle:hover svg{filter:drop-shadow(0 0 9px rgba(232,163,61,0.55));}
+.candle.lit svg{filter:drop-shadow(0 0 6px rgba(232,163,61,0.45));}
+.candle:focus-visible, .mc-card:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.candle svg{width:100%;height:100%;display:block;}
+.candle .flame{opacity:0;transform-origin:50% 100%;}
+.candle.lit .flame{
+  opacity:1;
+  animation:flicker 2.4s ease-in-out infinite;
+}
+@keyframes flicker{
+  0%,100%{transform:scale(1) rotate(0deg);}
+  25%{transform:scale(1.05,0.97) rotate(-2deg);}
+  50%{transform:scale(0.96,1.04) rotate(1deg);}
+  75%{transform:scale(1.03,0.98) rotate(2deg);}
+}
+@media (prefers-reduced-motion: reduce){
+  .candle.lit .flame{animation:none;}
+}
+.candle-caption{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--parchment);
+  opacity:0.65;
+  letter-spacing:0.04em;
+}
+.candle-caption b{color:var(--amber);opacity:1;}
+
+.scroll-hint{
+  margin-top:56px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.1em;
+  color:var(--parchment);
+  opacity:0.5;
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:90px 0;position:relative;z-index:10;}
+.section-head{margin-bottom:44px;}
+.section-head .eyebrow{margin-bottom:10px;}
+.section-head h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.8rem, 4vw, 2.6rem);
+  margin:0;
+}
+.divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(232,163,61,0.35), transparent);
+  margin:0 auto;
+  position:relative;
+  z-index:10;
+}
+
+/* ---------- MINI GAME ---------- */
+.game-intro{
+  font-size:0.98rem;
+  color:var(--parchment);
+  opacity:0.75;
+  line-height:1.6;
+  margin:-24px 0 26px;
+  max-width:520px;
+}
+.game-wrap{
+  background:rgba(242,233,220,0.04);
+  border:1px solid rgba(242,233,220,0.14);
+  border-radius:10px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.game-hud{
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+  max-width:420px;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--amber);
+  letter-spacing:0.05em;
+  margin-bottom:12px;
+}
+#gameCanvas{
+  width:100%;
+  max-width:420px;
+  aspect-ratio:3/4;
+  border-radius:8px;
+  background:linear-gradient(180deg, #0B1526, #14213D);
+  border:1px solid rgba(232,163,61,0.25);
+  touch-action:none;
+  display:block;
+}
+.game-controls{
+  margin-top:16px;
+  display:flex;
+  gap:12px;
+}
+.game-btn{
+  background:var(--amber);
+  color:var(--ink-deep);
+  border:none;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:0.92rem;
+  padding:11px 24px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.game-btn.secondary{
+  background:transparent;
+  color:var(--paper);
+  border:1px solid rgba(242,233,220,0.3);
+  font-weight:500;
+}
+.game-share-row{
+  margin-top:14px;
+  text-align:center;
+  display:none;
+}
+.game-share-row.show{display:block;}
+.game-share-btn{
+  background:none;
+  border:none;
+  color:var(--amber);
+  font-family:var(--sans);
+  font-size:0.86rem;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:4px;
+}
+.game-share-status{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--teal);
+  display:block;
+  margin-top:4px;
+  min-height:14px;
+}
+.game-hint{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--parchment);
+  opacity:0.5;
+  margin-top:14px;
+  text-align:center;
+}
+
+/* ---------- STATS ---------- */
+.stats-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:34px;
+  margin-top:54px;
+}
+.stat-card{text-align:center;max-width:160px;}
+.stat-number{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2rem, 5vw, 2.8rem);
+  color:var(--amber);
+  line-height:1;
+}
+.stat-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.05em;
+  color:var(--parchment);
+  opacity:0.7;
+  margin-top:8px;
+  line-height:1.4;
+}
+
+/* ---------- THEN & NOW ---------- */
+.then-now{
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.tn-card{text-align:center;}
+.tn-photo{
+  width:220px;
+  max-width:42vw;
+  aspect-ratio:3/4;
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid rgba(242,233,220,0.18);
+  box-shadow:0 12px 32px rgba(0,0,0,0.4);
+}
+.tn-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.tn-label{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-top:14px;
+}
+
+/* ---------- GREAT QUOTES ---------- */
+.quotes-list{display:flex;flex-direction:column;gap:22px;}
+.quote-card{
+  background:rgba(242,233,220,0.04);
+  border-left:2px solid var(--amber);
+  border-radius:0 8px 8px 0;
+  padding:22px 26px;
+  transition:transform 0.15s ease;
+}
+.quote-card p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height:1.5;
+  margin:0;
+  color:var(--parchment);
+  white-space:pre-line;
+}
+
+/* ---------- MINECRAFT SCREENSHOTS ---------- */
+.mc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:18px;
+}
+.mc-card{
+  position:relative;
+  aspect-ratio:16/10;
+  border-radius:8px;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid rgba(242,233,220,0.14);
+  background:rgba(242,233,220,0.04);
+  transition:transform 0.15s ease;
+}
+.mc-front, .mc-back{
+  position:absolute;
+  inset:0;
+  transition:opacity 0.25s ease;
+}
+.mc-front img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(0.95);
+}
+.mc-front .mc-caption-hint{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:10px 12px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.05em;
+  color:var(--paper);
+  background:linear-gradient(180deg, transparent, rgba(11,21,38,0.85));
+  opacity:0.8;
+}
+.mc-back{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px;
+  background:linear-gradient(160deg, rgba(27,75,67,0.55), rgba(20,33,61,0.9));
+  opacity:0;
+  pointer-events:none;
+}
+.mc-back p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.05rem;
+  line-height:1.45;
+  color:var(--parchment);
+  margin:0;
+}
+.mc-card.flipped .mc-front{opacity:0;pointer-events:none;}
+.mc-card.flipped .mc-back{opacity:1;pointer-events:auto;}
+
+/* ---------- REFLECTION DECK ---------- */
+.reflect-intro{
+  font-size:0.98rem;
+  color:var(--parchment);
+  opacity:0.75;
+  line-height:1.6;
+  margin:-24px 0 30px;
+  max-width:520px;
+}
+.reflect-box{
+  background:rgba(242,233,220,0.04);
+  border:1px solid rgba(242,233,220,0.14);
+  border-radius:10px;
+  padding:36px 32px;
+}
+.reflect-progress{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  margin-bottom:18px;
+  letter-spacing:0.05em;
+}
+.reflect-question{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  line-height:1.4;
+  margin:0 0 20px;
+}
+.reflect-box textarea{
+  width:100%;
+  min-height:100px;
+  background:rgba(250,247,242,0.03);
+  border:1px solid rgba(242,233,220,0.2);
+  border-radius:6px;
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:0.96rem;
+  padding:14px;
+  resize:vertical;
+  line-height:1.5;
+}
+.reflect-box textarea::placeholder{color:rgba(242,233,220,0.4);}
+.reflect-nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:22px;
+}
+.reflect-nav button{
+  background:transparent;
+  border:1px solid rgba(242,233,220,0.3);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:0.88rem;
+  padding:10px 18px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:border-color 0.15s ease;
+}
+.reflect-nav button:hover{border-color:var(--amber);}
+.reflect-nav button:disabled{opacity:0.3;cursor:default;}
+.reflect-nav .reflect-next{background:var(--amber);color:var(--ink-deep);border:none;font-weight:600;}
+.reflect-note{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.05rem;
+  color:var(--parchment);
+  text-align:center;
+  padding:10px 0 0;
+}
+.reflect-email-note{
+  font-family:var(--sans);
+  font-size:0.88rem;
+  color:var(--parchment);
+  opacity:0.65;
+  text-align:center;
+  margin:18px 0 0;
+}
+.reflect-email-row{
+  display:flex;
+  justify-content:center;
+  margin-top:16px;
+}
+.reflect-email-btn{
+  background:transparent;
+  border:1px solid rgba(232,163,61,0.5);
+  color:var(--amber);
+  font-family:var(--sans);
+  font-size:0.9rem;
+  font-weight:500;
+  padding:11px 22px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all 0.15s ease;
+}
+.reflect-email-btn:hover{background:rgba(232,163,61,0.12);}
+.reflect-copy-row{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:14px;
+}
+.reflect-copy-btn{
+  background:none;
+  border:none;
+  color:var(--parchment);
+  opacity:0.55;
+  font-family:var(--sans);
+  font-size:0.82rem;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:6px;
+}
+.reflect-copy-btn:hover{opacity:0.85;}
+.reflect-copied{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--teal);
+  background:rgba(27,75,67,0.35);
+  border:1px solid rgba(27,75,67,0.6);
+  padding:6px 12px;
+  border-radius:20px;
+  margin-top:8px;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:all 0.25s ease;
+}
+.reflect-copied.show{opacity:1;transform:translateY(0);}
+
+/* ---------- CLOSING ---------- */
+.closing{
+  text-align:center;
+  padding:100px 0 60px;
+}
+.closing-panel{
+  background:rgba(11,21,38,0.6);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-radius:14px;
+  padding:36px 26px;
+  border:1px solid rgba(232,163,61,0.15);
+}
+.closing-letter{
+  font-family:var(--serif);
+  font-size:clamp(1.1rem, 2.3vw, 1.35rem);
+  line-height:1.75;
+  color:var(--parchment);
+  max-width:560px;
+  margin:0 auto 30px;
+  white-space:pre-line;
+  opacity:0;
+  transition:opacity 1.4s ease;
+}
+.closing-letter.show{opacity:1;}
+.signature{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.4rem;
+  color:var(--amber);
+  opacity:0;
+  transition:opacity 1.4s ease 0.3s;
+}
+.signature.show{opacity:1;}
+.closing-lock{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--parchment);
+  opacity:0.5;
+  letter-spacing:0.04em;
+}
+.footer-note{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--parchment);
+  opacity:0;
+  letter-spacing:0.05em;
+  margin-top:34px;
+  transition:opacity 1.4s ease 0.6s;
+}
+.footer-note.show{opacity:0.6;}
+
+@media (max-width:520px){
+  section{padding:64px 0;}
+  .reflect-box{padding:22px;}
+}
+</style>
+</head>
+<body>
+
+<div id="introOverlay" aria-hidden="true">
+  <svg class="intro-candle" viewBox="0 0 26 70">
+    <rect x="10" y="24" width="6" height="46" rx="2" fill="#F2E9DC" opacity="0.85"/>
+    <rect x="12.5" y="12" width="1" height="14" stroke="#333" stroke-width="1"/>
+    <path class="flame" d="M13 0 C 18 8, 19 15, 13 22 C 7 15, 8 8, 13 0 Z" fill="url(#introFlameGrad)"/>
+    <defs>
+      <radialGradient id="introFlameGrad" cx="50%" cy="70%" r="70%">
+        <stop offset="0%" stop-color="#FFF3D6"/>
+        <stop offset="45%" stop-color="#E8A33D"/>
+        <stop offset="100%" stop-color="#C1666B"/>
+      </radialGradient>
+    </defs>
+  </svg>
+</div>
+
+<div id="floatWrap" aria-hidden="true"></div>
+<div class="ember-layer" id="emberLayer" aria-hidden="true"></div>
+<div id="achievementToast" role="status" aria-live="polite">
+  <span class="ach-icon" id="achIcon">🎂</span>
+  <div>
+    <div class="ach-title" id="achTitle">Achievement Get!</div>
+    <div class="ach-sub" id="achSub"></div>
+  </div>
+</div>
+<div id="tntBurst" aria-hidden="true">🧨</div>
+<button class="sound-toggle" id="soundToggle" aria-label="Toggle ambient sound" aria-pressed="true">🔊</button>
+
+<div class="hero">
+  <div class="eyebrow">a small project, for a big friendship</div>
+  <h1 id="heroTitle">Happy Birthday,<br>Hashim Azaz</h1>
+  <div class="gamertag">AKA <span id="gamertag">bbhitman786</span></div>
+  <p class="tagline" id="heroTagline"></p>
+
+  <div class="candles" id="candleRow"></div>
+  <div class="candle-caption"><span id="candleCount">0</span> / <b id="candleTotal">0</b> lit</div>
+
+  <div class="scroll-hint">↓ scroll while you light them ↓</div>
+</div>
+
+<div class="wrap">
+
+  <section id="thenNowSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter one</div>
+      <h2>Then &amp; Now</h2>
+    </div>
+    <div class="then-now">
+      <div class="tn-card">
+        <div class="tn-photo"><img id="thenImg" src="" alt="Hashim, then"></div>
+        <div class="tn-label">Then</div>
+      </div>
+      <div class="tn-card">
+        <div class="tn-photo"><img id="nowImg" src="" alt="Hashim, now"></div>
+        <div class="tn-label">Now</div>
+      </div>
+    </div>
+    <div class="stats-row" id="statsRow"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section id="quotesSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter two</div>
+      <h2>Great Quotes</h2>
+    </div>
+    <div class="quotes-list" id="quotesList"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section id="mcSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter three</div>
+      <h2>Screenshots that need context</h2>
+    </div>
+    <div class="mc-grid" id="mcGrid"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section id="reflectSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter four</div>
+      <h2>Something to sit with</h2>
+    </div>
+    <p class="reflect-intro" id="reflectIntro"></p>
+    <div class="reflect-box" id="reflectBox"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section id="gameSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter five</div>
+      <h2>One for old times' sake</h2>
+    </div>
+    <p class="game-intro">Catch the cake, dodge the TNT. Three lives — think you've still got it, <span id="gameGamertag"></span>?</p>
+    <div class="game-wrap">
+      <div class="game-hud">
+        <span>SCORE: <b id="gameScore">0</b></span>
+        <span id="gameLives">❤️❤️❤️</span>
+      </div>
+      <canvas id="gameCanvas"></canvas>
+      <div class="game-controls">
+        <button class="game-btn" id="gameStartBtn">Start</button>
+        <button class="game-btn secondary" id="gameRestartBtn" style="display:none;">Play again</button>
+      </div>
+      <div class="game-share-row" id="gameShareRow">
+        <button class="game-share-btn" id="gameShareBtn">Copy my score to share</button>
+        <span class="game-share-status" id="gameShareStatus"></span>
+      </div>
+      <div class="game-hint" id="gameHint">arrow keys or drag on mobile to move</div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section id="wallSection" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">chapter six</div>
+      <h2>Add to this</h2>
+    </div>
+    <p class="wall-intro">This isn't just for today — anyone with this link can drop a memory below, and it stays here for good. No login, just be yourself.</p>
+    <div class="wall-form">
+      <input type="text" id="wallNameInput" placeholder="Your name (optional)" maxlength="40">
+      <textarea id="wallMsgInput" placeholder="Write a memory, a message, anything..." maxlength="480"></textarea>
+      <input type="text" id="wallImgInput" placeholder="Photo URL (optional)">
+      <br>
+      <button class="wall-submit" id="wallSubmitBtn">Post</button>
+      <div class="wall-status" id="wallStatus"></div>
+    </div>
+    <div class="wall-list" id="wallList"></div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="closing reveal">
+    <div class="eyebrow">last chapter</div>
+    <div class="closing-panel">
+      <p class="closing-letter" id="closingLetter"></p>
+      <p class="signature" id="closingSignature"></p>
+      <p class="closing-lock" id="closingLock">— light the last candle to read this —</p>
+      <p class="footer-note" id="footerNote"></p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — edit everything below, save, refresh the browser.
+   ============================================================ */
+const CONFIG = {
+  friendName: "Hashim Azaz",
+  gamertag: "bbhitman786",
+  yourName: "Ahmad Jafri",
+  yourEmail: "abuturabisyokoso@gmail.com",
+  siteUrl: "https://abuturabisyokoso-bit.github.io/hashim-birthday/",
+  age: 17,
+  tagline: "A small thing, built for a big year — light every candle, bbhitman786.",
+
+  // Then & Now photos — direct image links
+  thenPhoto: "https://i.ibb.co/TxbKNJtt/IMG-20260221-WA0028.jpg",
+  nowPhoto: "https://i.ibb.co/gZ6NLbmR/Screenshot-20260617-203104.png",
+
+  // Small "by the numbers" stat row shown under Then & Now — numbers count
+  // up when scrolled into view. Placeholder values below — edit these to
+  // whatever's real/meaningful (years of friendship, hangouts, whatever).
+  stats: [
+    { value: 6, label: "years of friendship" },
+    { value: 17, label: "birthdays celebrated, this one included" }
+  ],
+
+  // Great Quotes — his catchphrases, shown as-is
+  quotes: [
+    "Kaise Log Hain!",
+    "Parho ge likho ge bano ge nawab\nKhelo ge kudo ge ho ge kharab"
+  ],
+
+  // Minecraft screenshots — click to flip and read the caption.
+  // First four already have their own vibe from the filenames — the last
+  // two are just timestamps, so add a line for those if you want (or
+  // leave the placeholder, still reads fine as a mystery screenshot).
+  minecraftScreens: [
+    { imageUrl: "https://i.ibb.co/35tngG3S/ts-actually-is-TUFF.png", caption: "May you conquer every field like this one" },
+    { imageUrl: "https://i.ibb.co/tpCMgZNx/throne.png", caption: "May you sit every throne like this one" },
+    { imageUrl: "https://i.ibb.co/0RZb87QX/NERDDD.png", caption: "May you stay as steady as here" },
+    { imageUrl: "https://i.ibb.co/yBFkHQ92/GOATED-PIC.png", caption: "The GOATED pic. No further questions." },
+    { imageUrl: "https://i.ibb.co/0jWZymj0/2026-07-21-17-15-39.png", caption: "I got cake for you twin" },
+    { imageUrl: "https://i.ibb.co/p6JLb5dT/2026-06-04-21-38-41.png", caption: "Keep winning" }
+  ],
+
+  reflectIntro: "No right answers here, and no one's grading it — just a few questions worth actually thinking about, from someone who cares how you'd answer them.",
+  reflectQuestions: [
+    "What's a goal you've been chasing for a while now — and how's that actually going?",
+    "When things get hard, what's your go-to way of coping? Does it actually help, or just get you through?",
+    "Looking back at the last year, are you satisfied with how you've spent it — or is there something you keep putting off?",
+    "What's something you're quietly proud of that you've never really said out loud?",
+    "What does 'doing well' look like for you right now — not for anyone else, just you?",
+    "If you could tell yourself one thing a year ago, what would it be?"
+  ],
+
+  closingLetter: "Bro, I must say that birthday is not an achievement to be proud of neither something to avoid. It is a chance for ourselves to reflect on the time we have passed in this world and try to be more productive. It gives hope for a new and much glorious dawn. May your upcoming years shine more than ever and you live a long life. Happy Birthday!",
+
+  footerNote: "built with a couple late nights, for you",
+
+  // Firebase project config — powers the live "Add to this" memory wall.
+  firebase: {
+    apiKey: "AIzaSyCqYEyMWyEI3YdP5ytjbyB3KZTQuSDx4jI",
+    authDomain: "first-8b63f.firebaseapp.com",
+    projectId: "first-8b63f",
+    storageBucket: "first-8b63f.firebasestorage.app",
+    messagingSenderId: "1078992000220",
+    appId: "1:1078992000220:web:ff6f57dae8ba82e8ccd019"
+  },
+
+  // Floating ambient photos — small, scattered near the edges as you
+  // scroll. side: "left" or "right". top: rough % down the whole page.
+  floatingPhotos: [
+    { url: "https://i.ibb.co/QFtV57v9/IMG-20251224-201625-549.jpg", side:"left",  top:6,  size:105, rot:-8  },
+    { url: "https://i.ibb.co/TDKh67cx/IMG-20251225-192153-767.jpg", side:"right", top:20, size:130, rot:6   },
+    { url: "https://i.ibb.co/DPdzKXs4/IMG-20251225-133928-491.jpg", side:"left",  top:38, size:95,  rot:-5  },
+    { url: "https://i.ibb.co/2Qs4Rtd/IMG-20251225-134753-903.jpg",  side:"right", top:55, size:125, rot:9   },
+    { url: "https://i.ibb.co/N2T75t5L/IMG-20251225-122934-624.jpg", side:"left",  top:72, size:110, rot:-7  },
+    { url: "https://i.ibb.co/F4Q4Mjq1/IMG-20251225-131236-870.jpg", side:"right", top:88, size:135, rot:4   }
+  ]
+};
+
+/* ============================================================
+   Engine below — shouldn't need to touch this.
+   ============================================================ */
+
+// --- Intro: light the candle, then reveal the page ---
+(function(){
+  const overlay = document.getElementById('introOverlay');
+  const candle = overlay.querySelector('.intro-candle');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ overlay.remove(); return; }
+  setTimeout(()=> candle.classList.add('lit'), 250);
+  setTimeout(()=>{
+    overlay.classList.add('fade-out');
+    setTimeout(()=> overlay.remove(), 750);
+  }, 1500);
+})();
+
+// --- Minecraft easter eggs: achievement toast ---
+let achTimeout = null;
+function showAchievement(icon, title, sub){
+  const toast = document.getElementById('achievementToast');
+  document.getElementById('achIcon').textContent = icon;
+  document.getElementById('achTitle').textContent = title;
+  document.getElementById('achSub').textContent = sub;
+  toast.classList.add('show');
+  clearTimeout(achTimeout);
+  achTimeout = setTimeout(()=> toast.classList.remove('show'), 4200);
+}
+
+// secret: type "tnt" anywhere on the page
+(function(){
+  let buffer = '';
+  document.addEventListener('keydown', e=>{
+    if(e.key.length !== 1) return;
+    buffer = (buffer + e.key).slice(-3).toLowerCase();
+    if(buffer === 'tnt'){
+      buffer = '';
+      const burst = document.getElementById('tntBurst');
+      burst.classList.remove('go');
+      void burst.offsetWidth;
+      burst.classList.add('go');
+      document.body.classList.remove('tnt-shake');
+      void document.body.offsetWidth;
+      document.body.classList.add('tnt-shake');
+      showAchievement('🧨','Achievement Get!','Sniper Duel');
+    }
+  });
+})();
+
+// secret: tap the gamertag badge 5 times for a diamond
+(function(){
+  const badge = document.getElementById('gamertag');
+  let taps = 0, tapTimer = null;
+  badge.style.cursor = 'default';
+  badge.addEventListener('click', ()=>{
+    taps++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(()=> taps = 0, 1200);
+    if(taps >= 5){
+      taps = 0;
+      showAchievement('💎','Achievement Get!','Diamonds!');
+    }
+  });
+})();
+
+document.getElementById('gamertag').textContent = CONFIG.gamertag;
+document.getElementById('heroTagline').textContent = CONFIG.tagline;
+document.getElementById('candleTotal').textContent = CONFIG.age;
+document.getElementById('footerNote').textContent = CONFIG.footerNote;
+
+// Graceful fallback for any broken/expired image link — shows a soft
+// placeholder instead of the browser's broken-image icon.
+function withImgFallback(img){
+  img.addEventListener('error', function handler(){
+    img.removeEventListener('error', handler);
+    img.src = 'data:image/svg+xml,' + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="100%" height="100%" fill="#1B2A4A"/><text x="50%" y="50%" font-size="48" text-anchor="middle" dominant-baseline="middle">🖼️</text></svg>`
+    );
+    img.style.objectFit = 'contain';
+    img.style.opacity = '0.55';
+    img.style.padding = '20%';
+  });
+}
+
+const thenImg = document.getElementById('thenImg');
+const nowImg = document.getElementById('nowImg');
+withImgFallback(thenImg);
+withImgFallback(nowImg);
+thenImg.src = CONFIG.thenPhoto;
+nowImg.src = CONFIG.nowPhoto;
+
+// --- Candles ---
+const candleRow = document.getElementById('candleRow');
+const candleCountEl = document.getElementById('candleCount');
+let litCount = 0;
+const totalCandles = Math.max(1, Math.min(CONFIG.age, 40));
+
+function flameSVG(){
+  return `<svg viewBox="0 0 26 70">
+    <rect x="10" y="24" width="6" height="46" rx="2" fill="#F2E9DC" opacity="0.85"/>
+    <rect x="12.5" y="12" width="1" height="14" stroke="#333" stroke-width="1"/>
+    <path class="flame" d="M13 0 C 18 8, 19 15, 13 22 C 7 15, 8 8, 13 0 Z" fill="url(#flameGrad)"/>
+    <defs>
+      <radialGradient id="flameGrad" cx="50%" cy="70%" r="70%">
+        <stop offset="0%" stop-color="#FFF3D6"/>
+        <stop offset="45%" stop-color="#E8A33D"/>
+        <stop offset="100%" stop-color="#C1666B"/>
+      </radialGradient>
+    </defs>
+  </svg>`;
+}
+
+for(let i=0;i<totalCandles;i++){
+  const c = document.createElement('div');
+  c.className='candle';
+  c.tabIndex = 0;
+  c.setAttribute('role','button');
+  c.setAttribute('aria-pressed','false');
+  c.setAttribute('aria-label','Light candle ' + (i+1) + ' of ' + totalCandles);
+  c.innerHTML = flameSVG();
+  const lightThis = ()=>{
+    if(c.classList.contains('lit')) return;
+    c.classList.add('lit');
+    c.setAttribute('aria-pressed','true');
+    litCount++;
+    candleCountEl.textContent = litCount;
+    document.documentElement.style.setProperty('--glow', (litCount/totalCandles).toFixed(3));
+    if(litCount === totalCandles){
+      revealClosing();
+      playChime();
+      showAchievement('🎂','Achievement Get!','We Need to Bake a Cake');
+    }
+  };
+  c.addEventListener('click', lightThis);
+  c.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); lightThis(); }
+  });
+  candleRow.appendChild(c);
+}
+
+// --- Great Quotes ---
+const quotesList = document.getElementById('quotesList');
+CONFIG.quotes.forEach(q=>{
+  const el = document.createElement('div');
+  el.className='quote-card';
+  el.innerHTML = `<p>"${q}"</p>`;
+  quotesList.appendChild(el);
+});
+
+// --- Minecraft screenshots ---
+const mcGrid = document.getElementById('mcGrid');
+const flippedShots = new Set();
+CONFIG.minecraftScreens.forEach((shot,i)=>{
+  const card = document.createElement('div');
+  card.className='mc-card';
+  card.tabIndex = 0;
+  card.setAttribute('role','button');
+  card.setAttribute('aria-pressed','false');
+  card.setAttribute('aria-label','Flip screenshot to read the caption');
+  card.innerHTML = `
+    <div class="mc-front">
+      <img alt="Minecraft screenshot">
+      <div class="mc-caption-hint">tap for the story</div>
+    </div>
+    <div class="mc-back"><p>${shot.caption}</p></div>
+  `;
+  const img = card.querySelector('img');
+  withImgFallback(img);
+  img.src = shot.imageUrl;
+  const flip = ()=>{
+    card.classList.toggle('flipped');
+    card.setAttribute('aria-pressed', card.classList.contains('flipped'));
+    flippedShots.add(i);
+    if(flippedShots.size === CONFIG.minecraftScreens.length){
+      showAchievement('🖼️','Achievement Get!','A Complete Catalogue');
+    }
+  };
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); }
+  });
+  mcGrid.appendChild(card);
+});
+
+// --- Reflection deck ---
+document.getElementById('reflectIntro').textContent = CONFIG.reflectIntro;
+const reflectBox = document.getElementById('reflectBox');
+let rIndex = 0;
+const rAnswers = new Array(CONFIG.reflectQuestions.length).fill('');
+
+function renderReflect(){
+  const total = CONFIG.reflectQuestions.length;
+  if(rIndex >= total){
+    reflectBox.innerHTML = `
+      <p class="reflect-note">That's all of them — no pressure to have answers today. Just wanted you to have the space to think about them.</p>
+      <p class="reflect-email-note">Email me your answers if you want with this button, or simply do not and your answers are private.</p>
+      <div class="reflect-email-row">
+        <button class="reflect-email-btn" id="reflectEmailBtn">Email my answers</button>
+      </div>
+      <div class="reflect-copy-row">
+        <button class="reflect-copy-btn" id="reflectCopyBtn">No mail app? Copy my answers instead</button>
+        <span class="reflect-copied" id="reflectCopied">Copied — paste it anywhere you'd like to send it</span>
+      </div>
+    `;
+    const buildBody = ()=>{
+      let body = "";
+      CONFIG.reflectQuestions.forEach((q,i)=>{
+        body += q + "\n" + (rAnswers[i].trim() ? rAnswers[i].trim() : "(left blank)") + "\n\n";
+      });
+      return body;
+    };
+    document.getElementById('reflectEmailBtn').addEventListener('click', ()=>{
+      const subject = "My answers — " + CONFIG.friendName;
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONFIG.yourEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildBody())}`;
+      window.open(gmailUrl, '_blank');
+    });
+    document.getElementById('reflectCopyBtn').addEventListener('click', ()=>{
+      const text = `To: ${CONFIG.yourEmail}\nSubject: My answers — ${CONFIG.friendName}\n\n` + buildBody();
+      navigator.clipboard.writeText(text).then(()=>{
+        const notice = document.getElementById('reflectCopied');
+        notice.classList.add('show');
+        setTimeout(()=> notice.classList.remove('show'), 2500);
+      }).catch(()=>{
+        alert(text);
+      });
+    });
+    return;
+  }
+  reflectBox.innerHTML = `
+    <div class="reflect-progress">${rIndex+1} / ${total}</div>
+    <div class="reflect-question">${CONFIG.reflectQuestions[rIndex]}</div>
+    <textarea placeholder="Jot something down if you want — it's just for you, nothing here gets saved or sent.">${rAnswers[rIndex]}</textarea>
+    <div class="reflect-nav">
+      <button id="reflectPrev" ${rIndex===0 ? 'disabled' : ''}>← Back</button>
+      <button class="reflect-next" id="reflectNext">${rIndex===total-1 ? 'Done' : 'Next →'}</button>
+    </div>
+  `;
+  const textarea = reflectBox.querySelector('textarea');
+  textarea.addEventListener('input', e=>{ rAnswers[rIndex] = e.target.value; });
+  document.getElementById('reflectNext').addEventListener('click', ()=>{ rIndex++; renderReflect(); });
+  if(rIndex>0){
+    document.getElementById('reflectPrev').addEventListener('click', ()=>{ rIndex--; renderReflect(); });
+  }
+}
+renderReflect();
+
+// --- Closing reveal ---
+function revealClosing(){
+  document.getElementById('closingLetter').textContent = CONFIG.closingLetter;
+  document.getElementById('closingSignature').textContent = "— " + CONFIG.yourName;
+  document.getElementById('closingLock').style.display = 'none';
+  setTimeout(()=>{
+    document.getElementById('closingLetter').classList.add('show');
+    document.getElementById('closingSignature').classList.add('show');
+    document.getElementById('footerNote').classList.add('show');
+  }, 100);
+}
+
+// --- Floating ambient photos ---
+const floatWrap = document.getElementById('floatWrap');
+CONFIG.floatingPhotos.forEach((p,i)=>{
+  const el = document.createElement('div');
+  el.className='floater';
+  el.style.width = p.size+'px';
+  el.style.height = (p.size*1.15)+'px';
+  el.style.top = p.top+'%';
+  el.style[p.side] = 'var(--floater-edge)';
+  el.style.setProperty('--rot', p.rot+'deg');
+  el.style.animationDuration = (5 + (i%3))+'s';
+  el.style.animationDelay = (-i*0.8)+'s';
+  el.innerHTML = `<img alt="">`;
+  const fimg = el.querySelector('img');
+  fimg.addEventListener('error', ()=> el.remove());
+  fimg.src = p.url;
+  floatWrap.appendChild(el);
+});
+
+function sizeFloatWrap(){
+  floatWrap.style.height = document.body.scrollHeight + 'px';
+}
+window.addEventListener('load', sizeFloatWrap);
+window.addEventListener('resize', sizeFloatWrap);
+setTimeout(sizeFloatWrap, 1000);
+setTimeout(sizeFloatWrap, 2500);
+
+// --- Stats: by the numbers ---
+const statsRow = document.getElementById('statsRow');
+CONFIG.stats.forEach((s,i)=>{
+  const el = document.createElement('div');
+  el.className='stat-card';
+  el.innerHTML = `<div class="stat-number" data-target="${s.value}" id="statNum${i}">0</div><div class="stat-label">${s.label}</div>`;
+  statsRow.appendChild(el);
+});
+function animateCount(el, target, duration){
+  const startTime = performance.now();
+  function step(now){
+    const progress = Math.min((now-startTime)/duration, 1);
+    el.textContent = Math.floor(progress * target);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+let statsAnimated = false;
+function tryAnimateStats(){
+  if(statsAnimated) return;
+  const row = document.getElementById('statsRow');
+  const r = row.getBoundingClientRect();
+  if(r.top < window.innerHeight * 0.85){
+    statsAnimated = true;
+    CONFIG.stats.forEach((s,i)=> animateCount(document.getElementById('statNum'+i), s.value, 1400));
+  }
+}
+
+// --- Scroll reveals ---
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window && !reduceMotion){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach(el=> io.observe(el));
+} else {
+  revealEls.forEach(el=> el.classList.add('in-view'));
+}
+window.addEventListener('scroll', tryAnimateStats, { passive:true });
+tryAnimateStats();
+
+// --- Ember particles ---
+const emberLayer = document.getElementById('emberLayer');
+if(!reduceMotion){
+  const lowEndDevice = (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+  const emberCount = lowEndDevice ? 5 : (window.innerWidth < 600 ? 9 : 16);
+  for(let i=0;i<emberCount;i++){
+    const e = document.createElement('div');
+    e.className='ember';
+    const size = 2 + Math.random()*3;
+    e.style.width = size+'px';
+    e.style.height = size+'px';
+    e.style.left = (Math.random()*100)+'%';
+    e.style.setProperty('--drift', (Math.random()*60-30)+'px');
+    const duration = 9 + Math.random()*8;
+    e.style.animationDuration = duration+'s';
+    e.style.animationDelay = (-Math.random()*duration)+'s';
+    emberLayer.appendChild(e);
+  }
+}
+
+// --- Tilt micro-interactions ---
+function attachTilt(selector, maxDeg){
+  document.querySelectorAll(selector).forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left)/r.width;
+      const py = (e.clientY - r.top)/r.height;
+      const rotY = (px-0.5)*2*maxDeg;
+      const rotX = (0.5-py)*2*maxDeg;
+      card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
+  });
+}
+if(window.matchMedia('(hover: hover)').matches){
+  attachTilt('.mc-card', 6);
+  attachTilt('.quote-card', 3);
+}
+
+// --- Mini game: catch the cake ---
+document.getElementById('gameGamertag').textContent = CONFIG.gamertag;
+(function(){
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('gameScore');
+  const livesEl = document.getElementById('gameLives');
+  const startBtn = document.getElementById('gameStartBtn');
+  const restartBtn = document.getElementById('gameRestartBtn');
+  const hint = document.getElementById('gameHint');
+
+  let W, H, dpr;
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize);
+
+  const GOOD = ['🎂','🍰','🧁'];
+  const BAD = ['🧨'];
+  const BONUS = '🍏';
+
+  let basketX, basketW, items, score, lives, running, spawnTimer, speed, leftHeld, rightHeld, lastTime;
+
+  function reset(){
+    resize();
+    basketW = Math.max(60, W*0.22);
+    basketX = W/2 - basketW/2;
+    items = [];
+    score = 0;
+    lives = 3;
+    running = true;
+    spawnTimer = 0;
+    speed = 1;
+    leftHeld = rightHeld = false;
+    lastTime = null;
+    scoreEl.textContent = score;
+    updateLives();
+  }
+
+  function updateLives(){
+    livesEl.textContent = '❤️'.repeat(Math.max(lives,0)) + '🖤'.repeat(3-Math.max(lives,0));
+  }
+
+  function spawnItem(){
+    const roll = Math.random();
+    let emoji, type;
+    if(roll < 0.14){ emoji = BONUS; type = 'bonus'; }
+    else if(roll < 0.38){ emoji = BAD[0]; type = 'bad'; }
+    else { emoji = GOOD[Math.floor(Math.random()*GOOD.length)]; type = 'good'; }
+    items.push({
+      x: 20 + Math.random()*(W-40),
+      y: -20,
+      emoji, type,
+      vy: (60 + Math.random()*40) * speed
+    });
+  }
+
+  function loop(ts){
+    if(!running) return;
+    if(lastTime === null) lastTime = ts;
+    const dt = Math.min((ts-lastTime)/1000, 0.05);
+    lastTime = ts;
+
+    spawnTimer -= dt;
+    if(spawnTimer <= 0){
+      spawnItem();
+      spawnTimer = Math.max(0.45, 1.1 - score*0.01);
+    }
+    speed = 1 + score*0.02;
+
+    if(leftHeld) basketX -= 260*dt;
+    if(rightHeld) basketX += 260*dt;
+    basketX = Math.max(0, Math.min(W-basketW, basketX));
+
+    const basketY = H - 34;
+    for(let i=items.length-1;i>=0;i--){
+      const it = items[i];
+      it.y += it.vy*dt;
+      if(it.y > basketY-10 && it.y < basketY+18 && it.x > basketX && it.x < basketX+basketW){
+        if(it.type === 'bad'){
+          lives--; updateLives();
+          if(lives<=0){ endGame(); }
+        } else if(it.type === 'bonus'){
+          score += 5;
+        } else {
+          score += 1;
+        }
+        scoreEl.textContent = score;
+        items.splice(i,1);
+        continue;
+      }
+      if(it.y > H+20) items.splice(i,1);
+    }
+
+    ctx.clearRect(0,0,W,H);
+    ctx.font = '28px sans-serif';
+    ctx.textAlign = 'center';
+    items.forEach(it=> ctx.fillText(it.emoji, it.x, it.y));
+    ctx.font = '34px sans-serif';
+    ctx.fillText('🧺', basketX+basketW/2, basketY+14);
+
+    if(running) requestAnimationFrame(loop);
+  }
+
+  function endGame(){
+    running = false;
+    ctx.fillStyle = 'rgba(11,21,38,0.82)';
+    ctx.fillRect(0,0,W,H);
+    ctx.fillStyle = '#F2E9DC';
+    ctx.font = '600 20px Fraunces, serif';
+    ctx.textAlign = 'center';
+    let msg = score >= 25 ? "Legendary run." : score >= 12 ? "Solid catch, honestly." : "We've seen better, twin.";
+    if(score >= 25) showAchievement('👑','Achievement Get!','Cake Legend');
+    ctx.fillText(msg, W/2, H/2 - 14);
+    ctx.font = '15px "IBM Plex Mono", monospace';
+    ctx.fillText('score: ' + score, W/2, H/2 + 16);
+    startBtn.style.display = 'none';
+    restartBtn.style.display = 'inline-block';
+    hint.textContent = 'game over';
+
+    const shareRow = document.getElementById('gameShareRow');
+    const shareBtn = document.getElementById('gameShareBtn');
+    const shareStatus = document.getElementById('gameShareStatus');
+    shareRow.classList.add('show');
+    shareStatus.textContent = '';
+    shareBtn.onclick = ()=>{
+      const text = `I scored ${score} on Hashim's birthday game — beat that: ${CONFIG.siteUrl}`;
+      navigator.clipboard.writeText(text).then(()=>{
+        shareStatus.textContent = 'Copied — paste it anywhere';
+        setTimeout(()=> shareStatus.textContent = '', 2500);
+      }).catch(()=>{
+        alert(text);
+      });
+    };
+  }
+
+  function startGame(){
+    reset();
+    startBtn.style.display = 'none';
+    restartBtn.style.display = 'none';
+    document.getElementById('gameShareRow').classList.remove('show');
+    hint.textContent = 'arrow keys or drag on mobile to move';
+    requestAnimationFrame(loop);
+  }
+
+  startBtn.addEventListener('click', startGame);
+  restartBtn.addEventListener('click', startGame);
+
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowLeft') leftHeld = true;
+    if(e.key === 'ArrowRight') rightHeld = true;
+  });
+  document.addEventListener('keyup', e=>{
+    if(e.key === 'ArrowLeft') leftHeld = false;
+    if(e.key === 'ArrowRight') rightHeld = false;
+  });
+
+  function pointerMove(clientX){
+    const rect = canvas.getBoundingClientRect();
+    basketX = (clientX - rect.left) - basketW/2;
+  }
+  canvas.addEventListener('touchmove', e=>{
+    if(!running) return;
+    e.preventDefault();
+    pointerMove(e.touches[0].clientX);
+  }, { passive:false });
+  canvas.addEventListener('mousemove', e=>{
+    if(!running) return;
+    pointerMove(e.clientX);
+  });
+
+  resize();
+})();
+
+// --- Memory wall (Firebase) ---
+(function(){
+  let db;
+  try{
+    firebase.initializeApp(CONFIG.firebase);
+    db = firebase.firestore();
+  } catch(e){
+    console.error('Firebase init failed', e);
+    document.getElementById('wallStatus').textContent = "Couldn't connect right now — try refreshing.";
+    return;
+  }
+
+  const list = document.getElementById('wallList');
+  const nameInput = document.getElementById('wallNameInput');
+  const msgInput = document.getElementById('wallMsgInput');
+  const imgInput = document.getElementById('wallImgInput');
+  const submitBtn = document.getElementById('wallSubmitBtn');
+  const status = document.getElementById('wallStatus');
+  let lastPostAt = 0;
+  const REACTION_EMOJIS = ['🔥','😂','❤️'];
+  const reactionCounts = {}; // { memoryId: { '🔥': n, ... } }
+  const reactedThisSession = new Set(); // `${memoryId}_${emoji}`, resets on reload
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderReactionRow(memoryId){
+    const counts = reactionCounts[memoryId] || {};
+    return `<div class="wall-reactions" data-memory-id="${memoryId}">
+      ${REACTION_EMOJIS.map(e=>{
+        const n = counts[e] || 0;
+        const reacted = reactedThisSession.has(memoryId+'_'+e) ? 'reacted' : '';
+        return `<button class="reaction-btn ${reacted}" data-emoji="${e}">${e} <span class="count">${n}</span></button>`;
+      }).join('')}
+    </div>`;
+  }
+
+  function updateReactionRowInDom(memoryId){
+    const row = list.querySelector(`.wall-reactions[data-memory-id="${memoryId}"]`);
+    if(row) row.outerHTML = renderReactionRow(memoryId);
+  }
+
+  list.addEventListener('click', e=>{
+    const btn = e.target.closest('.reaction-btn');
+    if(!btn) return;
+    const row = btn.closest('.wall-reactions');
+    const memoryId = row.dataset.memoryId;
+    const emoji = btn.dataset.emoji;
+    const key = memoryId + '_' + emoji;
+    if(reactedThisSession.has(key)) return; // one reaction per emoji per session
+    reactedThisSession.add(key);
+    updateReactionRowInDom(memoryId);
+    db.collection('reactions').add({
+      memoryId, emoji,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err=> console.error('reaction failed', err));
+  });
+
+  db.collection('reactions').onSnapshot(snapshot=>{
+    for(const key in reactionCounts) delete reactionCounts[key];
+    snapshot.forEach(doc=>{
+      const d = doc.data();
+      if(!d.memoryId || !d.emoji) return;
+      if(!reactionCounts[d.memoryId]) reactionCounts[d.memoryId] = {};
+      reactionCounts[d.memoryId][d.emoji] = (reactionCounts[d.memoryId][d.emoji] || 0) + 1;
+    });
+    Object.keys(reactionCounts).forEach(updateReactionRowInDom);
+  }, err=> console.error('reactions listener failed', err));
+
+  db.collection('memories').orderBy('createdAt','desc').limit(50)
+    .onSnapshot(snapshot=>{
+      if(snapshot.empty){
+        list.innerHTML = '<p class="wall-empty">Be the first to add something here.</p>';
+        return;
+      }
+      list.innerHTML = '';
+      snapshot.forEach(doc=>{
+        const d = doc.data();
+        const card = document.createElement('div');
+        card.className = 'wall-card';
+        card.innerHTML = `
+          <div class="wall-name">${escapeHtml(d.name || 'Anonymous')}</div>
+          <div class="wall-msg">${escapeHtml(d.message || '')}</div>
+          ${d.imageUrl ? `<img src="${escapeHtml(d.imageUrl)}" alt="">` : ''}
+          ${renderReactionRow(doc.id)}
+        `;
+        if(d.imageUrl) withImgFallback(card.querySelector('img'));
+        list.appendChild(card);
+      });
+    }, err=>{
+      console.error(err);
+      list.innerHTML = '<p class="wall-empty">Couldn\'t load memories right now.</p>';
+    });
+
+  submitBtn.addEventListener('click', ()=>{
+    const message = msgInput.value.trim();
+    if(!message){
+      status.textContent = 'Write something first.';
+      return;
+    }
+    const now = Date.now();
+    if(now - lastPostAt < 20000){
+      status.textContent = 'One at a time — try again in a few seconds.';
+      return;
+    }
+    submitBtn.disabled = true;
+    status.textContent = 'Posting...';
+    db.collection('memories').add({
+      name: nameInput.value.trim().slice(0,40),
+      message: message.slice(0,480),
+      imageUrl: imgInput.value.trim().slice(0,500),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(()=>{
+      lastPostAt = now;
+      msgInput.value = '';
+      imgInput.value = '';
+      status.textContent = 'Posted.';
+      setTimeout(()=> status.textContent = '', 2500);
+    }).catch(e=>{
+      console.error(e);
+      status.textContent = "Couldn't post — try again.";
+    }).finally(()=>{
+      submitBtn.disabled = false;
+    });
+  });
+})();
+
+// --- Sound (starts on first interaction, toggle-able) ---
+const soundToggle = document.getElementById('soundToggle');
+let audioCtx = null, masterGain = null, ambientNodes = [], soundOn = true, ambientNoteTimeout = null;
+
+// Browsers block audio until a real user gesture — this quietly starts the
+// ambient sound on the very first tap/click/keypress anywhere on the page,
+// so it's effectively "on by default" without needing the toggle pressed.
+function unlockAudioOnce(){
+  if(soundOn){ startAmbient(); }
+  document.removeEventListener('click', unlockAudioOnce);
+  document.removeEventListener('touchstart', unlockAudioOnce);
+  document.removeEventListener('keydown', unlockAudioOnce);
+}
+document.addEventListener('click', unlockAudioOnce, { once:true });
+document.addEventListener('touchstart', unlockAudioOnce, { once:true });
+document.addEventListener('keydown', unlockAudioOnce, { once:true });
+
+function ensureAudio(){
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(audioCtx.destination);
+  }
+}
+
+function startAmbient(){
+  ensureAudio();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+
+  // shared space bus: soft echo, gives that wandering/cavern feel
+  const delay = audioCtx.createDelay(1.0);
+  delay.delayTime.value = 0.42;
+  const feedback = audioCtx.createGain();
+  feedback.gain.value = 0.3;
+  const wet = audioCtx.createGain();
+  wet.gain.value = 0.35;
+  delay.connect(feedback);
+  feedback.connect(delay);
+  delay.connect(wet);
+  wet.connect(masterGain);
+  ambientNodes.push(delay, feedback, wet);
+
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = 700;
+  filter.connect(masterGain);
+  filter.connect(delay);
+
+  [130.81, 164.81, 196.00].forEach(f=>{
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = f;
+    const g = audioCtx.createGain();
+    g.gain.value = 0.16;
+    osc.connect(g); g.connect(filter);
+    osc.start();
+    ambientNodes.push(osc, g);
+  });
+
+  const lfo = audioCtx.createOscillator();
+  lfo.type = 'sine';
+  lfo.frequency.value = 0.05;
+  const lfoGain = audioCtx.createGain();
+  lfoGain.gain.value = 260;
+  lfo.connect(lfoGain);
+  lfoGain.connect(filter.frequency);
+  lfo.start();
+  ambientNodes.push(lfo, lfoGain, filter);
+
+  // sparse wandering pentatonic plucks, à la calm exploration music
+  const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33];
+  function scheduleNextPluck(){
+    ambientNoteTimeout = setTimeout(()=>{
+      if(!soundOn) return;
+      const freq = scale[Math.floor(Math.random()*scale.length)] * (Math.random() < 0.3 ? 0.5 : 1);
+      const osc = audioCtx.createOscillator();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      const g = audioCtx.createGain();
+      osc.connect(g); g.connect(masterGain); g.connect(delay);
+      const now = audioCtx.currentTime;
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.linearRampToValueAtTime(0.09, now + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+      osc.start(now);
+      osc.stop(now + 2.5);
+      scheduleNextPluck();
+    }, 2800 + Math.random()*4200);
+  }
+  scheduleNextPluck();
+
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.linearRampToValueAtTime(0.055, now + 1.5);
+}
+
+function stopAmbient(){
+  if(!audioCtx) return;
+  if(ambientNoteTimeout) clearTimeout(ambientNoteTimeout);
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.linearRampToValueAtTime(0, now + 1);
+  const nodesToClear = ambientNodes;
+  ambientNodes = [];
+  setTimeout(()=>{
+    nodesToClear.forEach(n=>{ try{ n.stop && n.stop(); n.disconnect && n.disconnect(); }catch(e){} });
+  }, 1100);
+}
+
+function playChime(){
+  if(!soundOn) return;
+  ensureAudio();
+  const now = audioCtx.currentTime;
+  [523.25, 659.25, 783.99].forEach((f,i)=>{
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = f;
+    const g = audioCtx.createGain();
+    osc.connect(g); g.connect(masterGain);
+    const start = now + i*0.12;
+    g.gain.setValueAtTime(0.0001, start);
+    g.gain.linearRampToValueAtTime(0.13, start+0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, start+1.4);
+    osc.start(start);
+    osc.stop(start+1.5);
+  });
+}
+
+soundToggle.addEventListener('click', ()=>{
+  soundOn = !soundOn;
+  soundToggle.textContent = soundOn ? '🔊' : '🔇';
+  soundToggle.setAttribute('aria-pressed', soundOn);
+  if(soundOn) startAmbient(); else stopAmbient();
+});
+</script>
+
+</body>
+</html>
